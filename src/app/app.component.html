@@ -1,10 +1,23 @@
-<ag-grid-angular
-  style="width: 100vw; height: 100vh"
-  class="ag-theme-alpine"
-  [rowData]="rowData | async"
-  [columnDefs]="columnDefs"
-  [defaultColDef]="defaultColDef"
-  [rowDragManaged]="true"
-  [animateRows]="true"
->
-</ag-grid-angular>
+<div class="wrapper">
+  <header>
+    <h1>Ag-Grid</h1>
+  </header>
+
+  <main>
+    <section>
+      <ag-grid-angular
+        style="height: 300px"
+        class="ag-theme-alpine"
+        [rowData]="rowData | async"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [rowDragManaged]="true"
+        [animateRows]="true"
+      >
+      </ag-grid-angular>
+    </section>
+    <section>
+      <app-order-form></app-order-form>
+    </section>
+  </main>
+</div>

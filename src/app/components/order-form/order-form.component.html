@@ -1,0 +1,39 @@
+<h2>Order form</h2>
+<!-- <form [formGroup]="myForm" novalidate (ngSubmit)="submit()"> -->
+<form>
+  <div>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        [formControl]="email"
+        required
+      />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="email.invalid">{{ getErrorMessageEmail() }}</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Delivery date</mat-label>
+      <input matInput [matDatepicker]="picker1" autocomplete="off" />
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div><button mat-raised-button color="primary">Submit</button></div>
+</form>
