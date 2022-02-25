@@ -1,39 +1,53 @@
 <h2>Order form</h2>
-<!-- <form [formGroup]="myForm" novalidate (ngSubmit)="submit()"> -->
-<form>
+<form [formGroup]="orderForm" novalidate (ngSubmit)="onSubmit()">
   <div>
     <mat-form-field color="accent" appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required />
+      <input matInput required type="text" formControlName="userName" />
       <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="orderForm.controls['userName'].errors">
+        Name should contains min 3 chars
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Phone number</mat-label>
+      <input matInput formControlName="userPhone" required maxlength="12" />
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-error *ngIf="orderForm.controls['userPhone'].errors">
+        Phone should be like +79260987665
+      </mat-error>
     </mat-form-field>
   </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input
-        matInput
-        placeholder="pat@example.com"
-        [formControl]="email"
-        required
-      />
+      <input matInput formControlName="userEmail" autocomplete="off" />
       <mat-icon matSuffix>email</mat-icon>
-      <mat-error *ngIf="email.invalid">{{ getErrorMessageEmail() }}</mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label>Message</mat-label>
-      <textarea matInput></textarea>
+      <mat-error *ngIf="orderForm.controls['userEmail'].errors">
+        Enter valid email
+      </mat-error>
     </mat-form-field>
   </div>
   <div>
     <mat-form-field color="accent" appearance="outline">
       <mat-label>Delivery date</mat-label>
-      <input matInput [matDatepicker]="picker1" autocomplete="off" />
+      <input
+        matInput
+        formControlName="dateDelivery"
+        [matDatepicker]="picker1"
+        autocomplete="off"
+      />
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
   </div>
-  <div><button mat-raised-button color="primary">Submit</button></div>
+  <div>
+    <button mat-raised-button color="primary" [disabled]="!orderForm.valid">
+      Submit
+    </button>
+  </div>
 </form>
+<p>Form Status: {{ orderForm.status }}</p>
+<p>Form Value: {{ orderForm.value | json }}</p>

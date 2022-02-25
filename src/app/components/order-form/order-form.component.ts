@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order-form',
@@ -7,14 +7,21 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./order-form.component.scss'],
 })
 export class OrderFormComponent {
-  email = new FormControl('', [Validators.required, Validators.email]);
-  name = new FormControl('', [Validators.required]);
+  orderForm: FormGroup = new FormGroup({
+    userName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    userPhone: new FormControl('+7', [
+      Validators.required,
+      Validators.minLength(12),
+      Validators.maxLength(12),
+    ]),
+    userEmail: new FormControl('', [Validators.email]),
+    dateDelivery: new FormControl(''),
+  });
 
-  getErrorMessageEmail() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  onSubmit() {
+    console.log(this.orderForm.value);
   }
 }
