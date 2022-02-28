@@ -6,13 +6,15 @@
   <main>
     <section>
       <ag-grid-angular
-        style="height: 300px"
+        style="height: 300px; width: 100%"
         class="ag-theme-alpine"
         [rowData]="rowData | async"
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
         [rowDragManaged]="true"
         [animateRows]="true"
+        [pagination]="true"
+        (rowClicked)="click($event)"
       >
       </ag-grid-angular>
     </section>

@@ -1,5 +1,6 @@
 <span>
-  <span>{{ cellValue }}</span
-  >&nbsp;
-  <button (click)="buttonClicked()">Push For Order</button>
+  <span>{{ cellValue }}</span>
+  <button mat-raised-button color="primary" (click)="doOrder($event)">
+    <mat-icon>shopping_cart</mat-icon> Buy me!
+  </button>
 </span>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-order-form',
@@ -19,9 +20,12 @@ export class OrderFormComponent {
     ]),
     userEmail: new FormControl('', [Validators.email]),
     dateDelivery: new FormControl(''),
+    userOrder: new FormControl(''),
   });
 
+  constructor(public orderService: OrderService) {}
+
   onSubmit() {
-    console.log(this.orderForm.value);
+    alert(this.orderForm.value);
   }
 }

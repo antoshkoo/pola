@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ColDef } from 'ag-grid-community';
 import { ButtonComponent } from './components/button/button.component';
+import { OrderService } from './services/order.service';
+import { ApiService } from './services/api.service';
 
+export interface apiData {
+  make: string;
+  model: string;
+  price: number;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,13 +35,21 @@ export class AppComponent {
   public defaultColDef: ColDef = {
     sortable: true,
     filter: true,
+    resizable: true,
   };
 
-  rowData: Observable<any[]>;
+  rowData: Observable<apiData[]>;
 
-  constructor(private http: HttpClient) {
-    this.rowData = this.http.get<any[]>(
-      'https://www.ag-grid.com/example-assets/small-row-data.json'
-    );
+  constructor(
+    private apiService: ApiService,
+    private orderService: OrderService
+  ) {
+    this.rowData = this.apiService.getData();
+  }
+
+  click(event: any) {
+    this.orderService.make = event.data.make;
+    this.orderService.model = event.data.model;
+    this.orderService.price = event.data.price;
   }
 }

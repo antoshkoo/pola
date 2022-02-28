@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-button',
@@ -9,7 +10,7 @@ import { ICellRendererParams } from 'ag-grid-community';
 })
 export class ButtonComponent implements ICellRendererAngularComp {
   public cellValue?: string;
-
+  constructor(private orderService: OrderService) {}
   agInit(params: ICellRendererParams): void {
     this.cellValue = this.getValueToDisplay(params);
   }
@@ -19,8 +20,10 @@ export class ButtonComponent implements ICellRendererAngularComp {
     return true;
   }
 
-  buttonClicked() {
-    alert(`${this.cellValue} medals won!`);
+  doOrder(event: any) {
+    this.orderService.make = event.data.make;
+    this.orderService.model = event.data.model;
+    this.orderService.price = event.data.price;
   }
 
   getValueToDisplay(params: ICellRendererParams) {
