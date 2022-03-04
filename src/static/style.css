@@ -31,6 +31,9 @@ th {
   background-color: #9fc4e7;
   color: #fff;
 }
+.align-left {
+  text-align: left;
+}
 .wrapper {
   width: 102.4rem;
   margin: 0 auto;
@@ -86,15 +89,14 @@ th {
 .total {
   flex-grow: 2;
 }
-.total .total-last {
-  padding-top: 5rem;
-  border: none;
-  border-bottom: 1px solid black;
+.total-last {
+  font-weight: 900;
 }
 .total td:first-child {
   text-align: left;
 }
 .profit {
+  padding-top: 2rem;
   justify-self: end;
   text-align: right;
   font-size: 1.6rem;
