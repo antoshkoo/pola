@@ -35,7 +35,7 @@ th {
   text-align: left;
 }
 .wrapper {
-  width: 102.4rem;
+  max-width: 102.4rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -48,22 +48,18 @@ th {
   justify-content: space-between;
   align-items: center;
 }
-.vessel-detail table,
-.vessel-detail td,
-.vessel-detail th {
-  width: unset;
-  color: unset;
-  background: unset;
-  border: none;
-  text-align: left;
+.vessel-detail-container {
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
 }
-.vessel-detail th {
-  text-align: left;
-  padding-right: 5rem;
+.vessel-detail {
+  display: flex;
+  gap: 2rem;
 }
-.vessel-detail-link {
-  font-size: 1.6rem;
-  text-align: center;
+.vessel-detail div:first-child {
+  width: 5rem;
+  font-weight: 700;
 }
 .head {
   display: flex;
@@ -73,6 +69,7 @@ th {
   display: flex;
   justify-content: space-evenly;
   align-items: baseline;
+  padding: 1rem;
   width: 100%;
   gap: 2rem;
 }
@@ -81,16 +78,21 @@ th {
   gap: 1rem;
   flex-wrap: wrap;
 }
+.row-tables div {
+  flex-grow: 1;
+}
 .results {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
 .total {
-  flex-grow: 2;
+  flex-grow: 1;
 }
 .total-last {
-  font-weight: 900;
+  border: 0;
+  border-bottom: 1px solid;
+  padding-top: 4rem;
 }
 .total td:first-child {
   text-align: left;
@@ -102,4 +104,31 @@ th {
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 3rem;
+}
+@media print {
+  html {
+    font-size: 6px;
+  }
+  td,
+  th {
+    padding: 4px;
+  }
+  .wrapper {
+    padding: 0;
+    margin: 0;
+  }
+  .vessel-detail-container {
+    padding: 2rem 0;
+    flex-direction: row;
+    font-size: 1.6rem;
+  }
+  .vessel-detail:first-child {
+    padding-left: 0;
+  }
+  .vessel-detail {
+    padding-left: 20px;
+  }
+  .row-tables div {
+    flex-basis: calc(50% - 5px);
+  }
 }
