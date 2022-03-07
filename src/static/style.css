@@ -13,6 +13,9 @@ h2 {
   display: inline-block;
   white-space: nowrap;
 }
+header {
+  border-bottom: 0.5rem solid #0068a1;
+}
 span {
   color: #4285f4;
 }
@@ -23,19 +26,19 @@ table {
 }
 td,
 th {
-  padding: 5px;
+  padding: 0.5rem;
   text-align: center;
   border: 1px solid #000;
 }
 th {
-  background-color: #9fc4e7;
+  background: #0068a1;
   color: #fff;
 }
 .align-left {
   text-align: left;
 }
 .wrapper {
-  max-width: 102.4rem;
+  max-width: 144.4rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -49,6 +52,7 @@ th {
   align-items: center;
 }
 .vessel-detail-container {
+  padding: 2rem 0 1rem;
   font-size: 1.4rem;
   display: flex;
   flex-direction: column;
@@ -74,9 +78,9 @@ th {
   gap: 2rem;
 }
 .row-tables {
+  font-size: 0.8rem;
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 .row-tables div {
   flex-grow: 1;
@@ -107,11 +111,11 @@ th {
 }
 @media print {
   html {
-    font-size: 6px;
+    font-size: 0.6rem;
   }
   td,
   th {
-    padding: 4px;
+    padding: 0.4rem;
   }
   .wrapper {
     padding: 0;
@@ -126,9 +130,9 @@ th {
     padding-left: 0;
   }
   .vessel-detail {
-    padding-left: 20px;
+    padding-left: 2rem;
   }
   .row-tables div {
-    flex-basis: calc(50% - 5px);
+    flex-basis: calc(50% - 0.5rem);
   }
 }
