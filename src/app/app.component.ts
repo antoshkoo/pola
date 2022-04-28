@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ColDef } from 'ag-grid-community';
 import { ButtonComponent } from './components/button/button.component';
-import { OrderService } from './services/order.service';
 import { ApiService } from './services/api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderFormComponent } from './components/order-form/order-form.component';
 
 export interface apiData {
   make: string;
@@ -40,16 +41,13 @@ export class AppComponent {
 
   rowData: Observable<apiData[]>;
 
-  constructor(
-    private apiService: ApiService,
-    private orderService: OrderService
-  ) {
+  constructor(private apiService: ApiService, public dialog: MatDialog) {
     this.rowData = this.apiService.getData();
   }
 
-  click(event: any) {
-    this.orderService.make = event.data.make;
-    this.orderService.model = event.data.model;
-    this.orderService.price = event.data.price;
+  openDialog(event: any) {
+    this.dialog.open(OrderFormComponent, {
+      data: event.data,
+    });
   }
 }

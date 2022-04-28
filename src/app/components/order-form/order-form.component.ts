@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OrderService } from 'src/app/services/order.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface DialogData {
+  make: string;
+  model: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-order-form',
@@ -8,6 +14,8 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./order-form.component.scss'],
 })
 export class OrderFormComponent {
+  showComplete = false;
+
   orderForm: FormGroup = new FormGroup({
     userName: new FormControl('', [
       Validators.required,
@@ -23,9 +31,9 @@ export class OrderFormComponent {
     userOrder: new FormControl(''),
   });
 
-  constructor(public orderService: OrderService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   onSubmit() {
-    alert(this.orderForm.value);
+    this.showComplete = true;
   }
 }

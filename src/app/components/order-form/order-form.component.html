@@ -1,6 +1,6 @@
-<section *ngIf="orderService.make && orderService.model">
+<div *ngIf="!showComplete">
   <h2>Order form</h2>
-  <h2>{{ orderService.make }} {{ orderService.model }}</h2>
+  <h2>{{ data.make }} {{ data.model }}</h2>
   <form [formGroup]="orderForm" novalidate (ngSubmit)="onSubmit()">
     <div>
       <mat-form-field color="accent" appearance="outline">
@@ -48,15 +48,9 @@
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
     </div>
-    <h2 *ngIf="orderService.price">
-      Total {{ orderService.price | currency: "EUR" }}
-    </h2>
+    <h2 *ngIf="data.price">Total {{ data.price | currency: "EUR" }}</h2>
     <div>
-      <input
-        type="hidden"
-        formControlName="userOrder"
-        [value]="orderService.price"
-      />
+      <input type="hidden" formControlName="userOrder" [value]="data.price" />
       <button mat-raised-button color="primary" [disabled]="!orderForm.valid">
         Submit
       </button>
@@ -64,4 +58,8 @@
   </form>
   <p>Form Status: {{ orderForm.status }}</p>
   <p>Form Value: {{ orderForm.value | json }}</p>
-</section>
+</div>
+<div *ngIf="showComplete" class="complete">
+  <mat-icon color="primary">done</mat-icon>
+  <div>Thanks for order!</div>
+</div>

@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonComponent } from './components/button/button.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
-import { OrderService } from './services/order.service';
 import { ApiService } from './services/api.service';
 
 @NgModule({
@@ -25,7 +24,7 @@ import { ApiService } from './services/api.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [OrderService, ApiService],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

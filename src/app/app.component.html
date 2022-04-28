@@ -14,12 +14,9 @@
         [rowDragManaged]="true"
         [animateRows]="true"
         [pagination]="true"
-        (rowClicked)="click($event)"
+        (rowClicked)="openDialog($event)"
       >
       </ag-grid-angular>
-    </section>
-    <section>
-      <app-order-form></app-order-form>
     </section>
   </main>
 </div>
